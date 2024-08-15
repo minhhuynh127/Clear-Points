@@ -1,14 +1,19 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useRef, useState } from "react";
 
-function getRandomPosition(maxWidth, maxHeight) {
-  const x = Math.floor(Math.random() * maxWidth);
-  const y = Math.floor(Math.random() * maxHeight);
-  return { x, y };
-}
+// function getRandomPosition(maxWidth, maxHeight) {
+//   const x = Math.floor(Math.random() * maxWidth);
+//   const y = Math.floor(Math.random() * maxHeight);
+//   return { x, y };
+// }
 const Board = memo(({ points }) => {
   const numbers = Array.from({ length: points }, (_, i) => i + 1);
   const boardWidth = 1270; // Chiều rộng của board
   const boardHeight = 500; // Chiều cao của board
+  const getRandomPosition = useCallback(() => {
+    const x = Math.floor(Math.random() * boardWidth);
+    const y = Math.floor(Math.random() * boardHeight);
+    return { x, y };
+  }, [points]);
   const [currentNumber, setCurrentNumber] = useState(1);
   // Hàm xử lý khi một ô được click
   const refs = useRef([]);
@@ -19,15 +24,15 @@ const Board = memo(({ points }) => {
     setTimeout(() => {
       refs.current[index].style.opacity = "0";
     }, 2000);
+
     // Check Thắng thua
-    let currentNumber = 1;
-    console.log("1", currentNumber);
     if (number === currentNumber) {
-      currentNumber = currentNumber + 1;
-      console.log("2", currentNumber);
-      if (number === points) {
-        console.log("You Win");
+      setCurrentNumber(currentNumber + 1);
+      if (currentNumber === points) {
+        // Thắng
       }
+    } else {
+      // Thua
     }
   };
   return (
