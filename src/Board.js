@@ -19,10 +19,12 @@ const Board = memo(({ points, setTime, setIsPlaying }) => {
       if (currentNumber > points) {
         setIsPlaying(false);
         alert("You have complete the game ");
+        window.location.reload();
       }
     } else {
       setIsPlaying(false);
       alert("Failed! You clicked the wrong number ");
+      window.location.reload();
     }
   };
   return (
