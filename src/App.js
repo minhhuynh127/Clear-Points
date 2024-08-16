@@ -31,6 +31,7 @@ function App() {
 
     return `${getHours}:${getMinutes}:${getSeconds}`;
   };
+
   return (
     <div className="wrapper">
       <h1 className="title">Let's Play</h1>
@@ -52,8 +53,7 @@ function App() {
           Play
         </button>
       )}
-
-      <Board points={points} />
+      <Board points={points} setTime={setTime} setIsPlaying={setTime} />
     </div>
   );
 }
