@@ -10,11 +10,6 @@ const Board = memo(({ points, setTime, setIsPlaying }) => {
   const numbers = Array.from({ length: points }, (_, i) => i + 1);
   const boardWidth = 1270; // Chiều rộng của board
   const boardHeight = 500; // Chiều cao của board
-  const getRandomPosition = useCallback(() => {
-    const x = Math.floor(Math.random() * boardWidth);
-    const y = Math.floor(Math.random() * boardHeight);
-    return { x, y };
-  }, [points]);
   // const [currentNumber, setCurrentNumber] = useState(1);
   // Hàm xử lý khi một ô được click
   let currentNumber = 1;
